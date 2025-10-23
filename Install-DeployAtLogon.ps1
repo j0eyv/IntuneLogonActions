@@ -8,12 +8,12 @@ and creates a registry key for detection purposes (e.g., for Intune or other man
 #>
 
 # MODIFYABLE PARAMETERS
-$taskName   = "Component_DeployAtLogon" # Define the name of the scheduled task
+$taskName = "Component_DeployAtLogon" # Define the name of the scheduled task
 $taskDescription = "Describe the action of the scheduled task here." # Add a description of the scheduled task
 $Author = "Joey Verlinden" # Define the author of the scheduled task/script
 
 # STATIC PARAMETERS
-$scriptDir  = "C:\ProgramData\CustomDeviceManagement\"
+$scriptDir = "C:\ProgramData\CustomDeviceManagement\"
 $scriptPath = Join-Path $scriptDir "$taskName.ps1"
 
 # CREATE SCRIPT DIRECTORY
@@ -99,3 +99,4 @@ if(!(Test-Path $Path)){New-Item -Path $Path -Force}
 if(!$Key){Set-Item -Path $Path -Value $Value
 
 }else{Set-ItemProperty -Path $Path -Name $Key -Value $Value -Type $KeyFormat}
+
