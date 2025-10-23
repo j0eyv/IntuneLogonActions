@@ -13,6 +13,10 @@ if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
 $scriptFile = "$scriptDir$taskName.ps1"
 if (Test-Path $scriptFile) {
     Remove-Item $scriptFile -ErrorAction SilentlyContinue
-
 }
 
+# REMOVE REGISTRY ENTRY
+$regPath = "HKLM:\SOFTWARE\CustomDeviceManagement\$taskName"
+if (Test-Path $regPath) {
+    Remove-Item -Path $regPath -Recurse -Force
+}
