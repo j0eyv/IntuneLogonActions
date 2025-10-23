@@ -1,8 +1,8 @@
 # MODIFYABLE PARAMETERS
-$taskName   = "Component_DeployAtLogon" # Define the name of the scheduled task
+$taskName  = "Component_DeployAtLogon" # Define the name of the scheduled task
 
 # STATIC PARAMETERS
-$scriptDir  = "C:\ProgramData\CustomDeviceManagement\"
+$scriptDir = "C:\ProgramData\CustomDeviceManagement\"
 
 # REMOVE SCHEDULED TASK
 if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
@@ -13,4 +13,5 @@ if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
 $scriptFile = "$scriptDir$taskName.ps1"
 if (Test-Path $scriptFile) {
     Remove-Item $scriptFile -ErrorAction SilentlyContinue
+
 }
