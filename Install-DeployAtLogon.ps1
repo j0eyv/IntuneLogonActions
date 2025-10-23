@@ -16,23 +16,6 @@ $Author = "Joey Verlinden" # Define the author of the scheduled task/script
 $scriptDir  = "C:\ProgramData\CustomDeviceManagement\"
 $scriptPath = Join-Path $scriptDir "$taskName.ps1"
 
-# Registry key creation function
-function New-RegistryKey {
-    param(
-        [Parameter(Mandatory)]
-        [string]$Key,
-        [Parameter(Mandatory)]
-        [string]$Name,
-        [Parameter(Mandatory)]
-        [string]$Data,
-        [string]$Type = "String"
-    )
-    if (-not (Test-Path -Path $Key)) {
-        New-Item -Path $Key -Force | Out-Null
-    }
-    Set-ItemProperty -Path $Key -Name $Name -Value $Data -Type $Type
-}
-
 # CREATE SCRIPT DIRECTORY
 if (-not (Test-Path -Path $scriptDir)) {
     New-Item -Path $scriptDir -ItemType Directory -Force | Out-Null
@@ -114,4 +97,5 @@ $Value = "1"
 
 if(!(Test-Path $Path)){New-Item -Path $Path -Force}
 if(!$Key){Set-Item -Path $Path -Value $Value
+
 }else{Set-ItemProperty -Path $Path -Name $Key -Value $Value -Type $KeyFormat}
